@@ -13,30 +13,26 @@ sub do-four(&code) {
     do-twice &code;
 }
 
-sub draw-header($count) {
-    my $segment = '+' ~ ('-' x 4);
-    print $segment x $count
-}
-
-sub draw-filler($count) {
-    my $segment = '|' ~ (' ' x 4);
-    print $segment x $count
+sub draw-segment($count, $edge, $filler) {
+    my $segment = $edge ~ ($filler x 4);
+    print $segment x $count;
+    say $edge;
 }
 
 sub draw-grid {
     do-twice {
-        draw-header(2); say '+';
-        do-four { draw-filler(2); say '|'; }
+        draw-segment(2, '+', '-');
+        do-four { draw-segment(2, '|', ' '); }
     }
-    draw-header(2); say '+';
+    draw-segment(2, '+', '-');
 }
 
 sub draw-four-grid {
     do-four {
-        draw-header(4); say '+';
-        do-four { draw-filler(4); say '|'}
+        draw-segment(4, '+', '-');
+        do-four { draw-segment(4, '|', ' '); }
     }
-    draw-header(4); say '+';
+    draw-segment(4, '+', '-');
 }
 
 draw-grid;
