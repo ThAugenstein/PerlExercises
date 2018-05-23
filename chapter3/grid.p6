@@ -2,12 +2,12 @@
 
 use v6;
 
-my $num_rows   = 3;
+my $num_rows   = 4;
 my $num_cols   = 7;
-my $col_width  = 5;
-my $row_heigth = 2;
+my $col_width  = 4;
+my $row_heigth = 3;
 
-printf "Grid: %d x %d Cell: %d x %d\n", $num_rows, $num_cols, $row_heigth, $col_width;
+printf "Grid: %d x %d Cell: %d x %d\n", $num_cols, $num_rows, $col_width, $row_heigth ;
 
 sub do-n-times($code-to-run, Int $n) {
     return if $n <= 0;
@@ -15,21 +15,18 @@ sub do-n-times($code-to-run, Int $n) {
     do-n-times $code-to-run, $n-1;
 }
 
-sub draw-segment($edge, $filler) {
+sub build_line($edge, $filler) {
     my $segment = $edge ~ ($filler x $col_width);
-    print $segment x $num_cols;
-    say $edge;
+    return ($segment x $num_cols) ~ $edge;
 }
 
-my $edge_line   = { draw-segment('+', '-'); }
-my $filler_line = { draw-segment('|', ' '); }
-
-my $draw_row    = { $edge_line();
-                    do-n-times $filler_line, $row_heigth; }
-                 
 sub draw-grid {
+    my $edge_line   = build_line('+', '-');
+    my $filler_line = build_line('|', ' ');
+    my $draw_row    = { say $edge_line;
+                        do-n-times { say $filler_line; }, $row_heigth; }
     do-n-times $draw_row, $num_rows;
-    $edge_line();
+    say $edge_line;
 }
 
 draw-grid();
