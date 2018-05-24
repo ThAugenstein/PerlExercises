@@ -5,7 +5,7 @@ use v6;
 my $num_rows   = 4;
 my $num_cols   = 7;
 my $col_width  = 4;
-my $row_heigth = 3;
+my $row_heigth = 2;
 
 printf "Grid: %d x %d Cell: %d x %d\n", $num_cols, $num_rows, $col_width, $row_heigth ;
 
