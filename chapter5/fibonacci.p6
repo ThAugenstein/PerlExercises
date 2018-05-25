@@ -2,9 +2,7 @@
 
 use v6;
 
-# Fibonacci(0) = 1
-# Fibonacci(1) = 1
-# Fibonacci(n) = Fibonacci(n-2) + Fibonacci(n-1) for n >= 3
+# fibonacci recursive, probably not very efficient!
 
 sub fibonacci(Int $n) {
     return 1 if $n == 1 or $n == 2;
