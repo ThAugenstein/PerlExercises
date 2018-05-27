@@ -8,4 +8,4 @@ sub ack(Int $m, Int $n) {
     return ack($m-1, ack($m,$n-1))  if $m > 0 and $n > 0;
 }
 
-say ack(4, 2);
+say ack(3, 4);
