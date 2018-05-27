@@ -1,3 +1,3 @@
 # PerlExercises
 
-Exsercises from thinkperl6.pdf
+Exercises from thinkperl6.pdf
