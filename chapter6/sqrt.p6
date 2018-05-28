@@ -2,21 +2,27 @@
 
 use v6;
 
-my $epsilon = 0.00001;
-
 sub newton($a) {
-    my $x = $a/2; 
+    my $epsilon = 1e-8;
+    my $estimate = $a/2; 
+    my $count = 0;
     while True {
-        my $y = ($x + $a/$x)/2;
-        last if abs($y - $x) < $epsilon;
-        $x = $y;
+        my $new_estimate = ($estimate + $a/$estimate)/2;
+        $count++;
+        return ($new_estimate, $count) if abs($new_estimate - $estimate) < $epsilon;
+        $estimate = $new_estimate;
     }
-    return $x;
 }
 
-for (1 .. 9) -> $t {
-    my $my_sqrt = newton($t);
-    my $perl_sqrt = sqrt($t);
-    my $diff = $my_sqrt - $perl_sqrt;
-    printf "%d %.15g %.15g %.15g\n", $t, $my_sqrt, $perl_sqrt, $diff;
+sub test_newton($test_number) {
+    my ($my_sqrt, $count) = newton $test_number ;
+    my $perl_sqrt = sqrt $test_number ;
+    my $diff = abs($my_sqrt - $perl_sqrt);
+    printf "%3d %18.15f %18.15f %.3e %3d\n", $test_number, $my_sqrt, $perl_sqrt, $diff, $count;
+}
+
+printf "%3s %18s %18s %9s %3s\n", 'a', 'newton()', 'sqrt()', 'e', 'n';
+for (1 .. 19) {
+    test_newton (^999).pick;
 } 
+test_newton 666;
