@@ -1,0 +1,14 @@
+#! /usr/bin/env perl6
+
+use v6;
+
+sub do-n-times($func, Int $n is copy) {
+    while $n > 0 {
+        $func();
+        $n--;
+    }
+}
+
+my $subref = sub { say "Carpe diem"; }
+
+do-n-times $subref, 6;
