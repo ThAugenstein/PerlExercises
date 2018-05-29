@@ -23,6 +23,6 @@ sub estimate-pi {
     return 1/($factor * $sum);    
 }
 
-say "pi = ", estimate-pi;
-say "perl.pi = ", pi;
+say "my pi = ", estimate-pi;
+say "perl pi = ", pi;
 say "difference = ", estimate-pi() - pi;
