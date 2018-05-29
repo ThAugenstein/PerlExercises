@@ -23,6 +23,7 @@ sub test_newton($test_number) {
 
 printf "%3s %18s %18s %9s %3s\n", 'a', 'newton()', 'sqrt()', 'e', 'n';
 for (1 .. 19) {
-    test_newton (^999).pick;
+    test_newton (1 .. 999).pick;
 }
 test_newton 666;
+
